@@ -17,7 +17,7 @@ const selectAllFactories = async (req, res) => {
 
 const buyFactory = async (req, res) => {
   const player_id = "02bed726-39f3-453a-88bc-2c9b5aa7161a";
-  const factory_id = "733a4b90-3d9c-45d3-b01f-59a8c2e4926e";
+  const factory_id = "aa33b191-b955-4be6-bbdf-70f1873fd41a";
   try {
     const player = await getPlayerById(player_id);
     const factory = await getFactoryById(factory_id);
