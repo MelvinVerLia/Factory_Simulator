@@ -1,5 +1,9 @@
 require("dotenv").config();
 
+const {
+  insertResource,
+  resourceNormalize,
+} = require("./controller/IdleController");
 const cors = require("cors");
 const express = require("express");
 const db = require("./db/index");
@@ -15,8 +19,9 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-app.post("/get/resource", (req, res) => {
-  try {
-    
-  } catch (error) {}
-});
+app.post("/get/resource", insertResource);
+
+setInterval(() => {
+  console.log("Price Updated");
+  resourceNormalize();
+}, 2 * 60 * 1000);
