@@ -17,15 +17,16 @@ const selectAllFactories = async (req, res) => {
 
 const buyFactory = async (req, res) => {
   const player_id = "02bed726-39f3-453a-88bc-2c9b5aa7161a";
-  const factory_id = "aa33b191-b955-4be6-bbdf-70f1873fd41a";
+  const factory_id = "ab9f8e0a-792f-463e-9f1a-f911e21199ab";
   try {
     const player = await getPlayerById(player_id);
     const factory = await getFactoryById(factory_id);
 
     if (!player || !factory) return res.json("Factory or player not found");
 
-    const wallet = player.wallet;
-    const price = factory.price;
+    const wallet = parseFloat(player.wallet);
+
+    const price = parseFloat(factory.price);
 
     if (wallet < price) return res.json("You Dont Have Enough Money!");
 
@@ -35,6 +36,11 @@ const buyFactory = async (req, res) => {
   } catch (error) {
     res.json(error.message).status(500);
   }
+};
+
+const processResources = async (req, res) => {
+  try {
+  } catch (error) {}
 };
 
 module.exports = {
