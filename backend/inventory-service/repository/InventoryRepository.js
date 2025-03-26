@@ -13,7 +13,7 @@ const sellResources = async (player_id, resource_id, quantity) => {
       "UPDATE resource_catalog rc SET total_sold = total_sold + $2, last_change = now() WHERE rc.id = $1",
       [resource_id, quantity]
     );
-    await client.query(
+    await client.query(           
       "UPDATE player_resource SET quantity = quantity - $3 WHERE player_id = $1 AND resource_id = $2 AND quantity >= $3",
       [player_id, resource_id, quantity]
     );
@@ -32,6 +32,18 @@ const sellResources = async (player_id, resource_id, quantity) => {
   }
 };
 
+const getPlayerFactory = async (player_id) => {
+  const response = await db.query(
+    `SELECT fc.id, fc.name factory_name, rc.name output_resource, fc.output_quantity FROM player_factory pf
+     JOIN factory_catalog fc ON fc.id = pf.factory_id
+     JOIN resource_catalog rc ON rc.id = fc.output_resource
+     WHERE player_id = $1`,
+    [player_id]
+  );
+  return response;
+};
+
 module.exports = {
   sellResources,
+  getPlayerFactory,
 };

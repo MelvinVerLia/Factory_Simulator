@@ -28,3 +28,4 @@ app.get("/factory", selectAllFactories);
 app.post("/buy/factory", buyFactory);
 
 app.post("/factory/process", insertQueue);
+

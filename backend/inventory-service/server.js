@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { sellResource } = require("./controller/InventoryController");
+const { sellResource, selectPlayerFactory } = require("./controller/InventoryController");
 const cors = require("cors");
 const express = require("express");
 const db = require("./db");
@@ -17,3 +17,5 @@ app.listen(port, () => {
 });
 
 app.post("/sell", sellResource);
+
+app.get("/player/factory", selectPlayerFactory)
